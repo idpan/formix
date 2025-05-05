@@ -1,0 +1,174 @@
+/* ===========================
+   Root Variables
+   =========================== */
+:root {
+    /* Typography */
+    --font-family-base: "Arial", sans-serif;
+    --font-lg: 3rem;
+    --font-md: 1.25rem;
+    --font-sm: 1rem;
+
+    /* Colors */
+    --color-bg: #f9f9f9;
+    --color-text: #333;
+    --color-primary: #007bff;
+    --color-primary-hover: #0056b3;
+    --color-white: #fff;
+    --color-dark: #222;
+    --color-overlay: rgba(0, 0, 0, 0.5);
+
+    /* Layout */
+    --container-max-width: 1200px;
+    --container-padding: 15px;
+
+    /* Spacing */
+    --section-padding: 60px;
+    --border-radius: 6px;
+
+    /* Transitions & Shadow */
+    --transition-fast: 0.2s ease;
+    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ===========================
+     Responsive Overrides
+     =========================== */
+@media (max-width: 768px) {
+    :root {
+        --font-lg: 2rem;
+        --font-md: 1rem;
+        --font-sm: 0.875rem;
+        --section-padding: 30px;
+    }
+}
+
+/* ===========================
+     Global Reset & Base Styles
+     =========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: var(--font-family-base);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* ===========================
+     Layout Helpers
+     =========================== */
+.container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.main-content {
+    flex: 1;
+}
+
+/* ===========================
+     Typography Utilities
+     =========================== */
+.text-center {
+    text-align: center;
+}
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+/* ===========================
+     Buttons
+     =========================== */
+button,
+.btn {
+    padding: 10px 20px;
+    font-size: var(--font-sm);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+button:hover,
+.btn:hover {
+    background-color: var(--color-primary-hover);
+}
+
+/* ===========================
+     Hero Section Example
+     =========================== */
+.hero {
+    position: relative;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    color: var(--color-white);
+}
+
+.hero .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-overlay);
+    z-index: 1;
+}
+
+.hero .content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+}
+.heading {
+    font-size: var(--font-lg);
+}
+.content {
+    font-size: var(--font-sm);
+}
+/* ===========================
+     Footer
+     =========================== */
+footer {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+/* ===========================
+     Card & Grid (optional)
+     =========================== */
+
+.grid {
+    display: grid;
+    gap: 20px;
+}
+@media (min-width: 768px) {
+    .grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .grid-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

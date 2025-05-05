@@ -1,0 +1,210 @@
+/* hero section */
+.hero {
+    background: #bab5b5;
+    background-size: cover;
+    padding: 20px;
+    padding-top: 50px;
+    height: 90vh;
+}
+.hero .content {
+    background-color: rgba(0, 0, 0, 0.463);
+    padding: 20px;
+}
+.heading {
+    font-size: var(--font-lg);
+}
+.subheading {
+    font-size: var(--font-md);
+}
+
+/* about section */
+.about .content {
+    padding: var(--section-padding);
+}
+.about .heading {
+    font-size: var(--font-lg);
+}
+.about .description {
+    margin-top: 20px;
+    font-size: var(--font-sm);
+}
+
+/* service section */
+
+/* Featured Project Section Styling */
+.featured-project {
+    padding: 100px 20px;
+    background: #f9fafb;
+}
+
+.featured-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.featured-header h2 {
+    font-size: var(--font-lg);
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+}
+
+.cta-button {
+    background: var(--color-primary);
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.cta-button:hover {
+    background: #374ecb;
+}
+
+.project-slider {
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.slider-item {
+    background: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.slider-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.slider-item h3 {
+    font-size: var(--font-md);
+    color: var(--color-text);
+}
+
+.slider-item p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* cta */
+.cta-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: #1e40af;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #4c6dff;
+}
+
+.right-column {
+    flex: 1;
+}
+
+.project-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+}
+
+.slider-item {
+    min-width: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.slider-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.slider-item-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1e40af;
+}
+
+.slider-item-client {
+    font-size: 1rem;
+    color: #555;
+}
+
+.map-container {
+    margin-top: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .left-column {
+        padding-right: 0;
+        margin-bottom: 30px;
+    }
+
+    .project-slider {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .slider-item {
+        max-width: 90%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    /*hero section*/
+    .hero {
+        padding-left: 50px;
+        display: flex;
+        align-items: center;
+    }
+    .hero .content {
+        max-width: 800px;
+    }
+    .hero__info-wrapper {
+        max-width: 800px;
+    }
+    .heading {
+        font-size: 64px;
+    }
+    .subheading {
+        font-size: 20px;
+    }
+
+    /* about section */
+    .about {
+        padding: 100px;
+        display: flex;
+    }
+    .about .image {
+        max-width: 700px;
+    }
+}

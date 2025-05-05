@@ -14,7 +14,7 @@ class ProjectSeeder extends Seeder
         for ($i = 1; $i <= 5; $i++) {
             $project = Project::create([
                 'title' => "Project $i",
-                'client' => "Client $i",
+                'client_name' => "Client $i",
                 'description' => "Description for project $i."
             ]);
 

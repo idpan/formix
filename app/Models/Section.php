@@ -9,7 +9,7 @@ class Section extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['page_id', 'title', 'content', 'order'];
+    protected $fillable = ['page_id', 'name', 'header', 'subheader', 'paragraph'];
 
     public function page()
     {

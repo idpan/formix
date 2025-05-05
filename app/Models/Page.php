@@ -15,4 +15,8 @@ class Page extends Model
     {
         return $this->hasMany(Section::class);
     }
+    public function metadata()
+    {
+        return $this->hasMany(Metadata::class);
+    }
 }

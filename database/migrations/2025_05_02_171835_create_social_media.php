@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sections', function (Blueprint $table) {
+        Schema::create('social_media', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('page_id')->constrained()->onDelete('cascade');
-            $table->string('name');
-            $table->text('header');
-            $table->text('paragraph');
+            $table->foreignId('contact_id')->constrained()->onDelete('cascade');
+            $table->string('username');
+            $table->string('platform');
+            $table->string('url');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sections');
+        Schema::dropIfExists('social_media');
     }
 };

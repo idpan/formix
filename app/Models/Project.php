@@ -11,8 +11,17 @@ class Project extends Model
 
     protected $fillable = ['title', 'client_name', 'description'];
 
+    // public function projectImages()
+    // {
+    //     return $this->hasMany(ProjectImage::class);
+    // }
     public function projectImages()
     {
         return $this->hasMany(ProjectImage::class);
+    }
+
+    public function thumbnail()
+    {
+        return $this->hasOne(ProjectImage::class)->oldestOfMany(); // ambil gambar pertama
     }
 }

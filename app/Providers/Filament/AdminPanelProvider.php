@@ -25,60 +25,67 @@ use App\Filament\Resources\ProjectResource;
 use Filament\Navigation\NavigationBuilder;
 use App\Models\Page;
 use Illuminate\Support\Facades\Log;
-
+use App\Filament\Pages\CostPlanning\CreateCostPlanning;
 use Filament\Pages\Dashboard;
 
 class AdminPanelProvider extends PanelProvider
 {
+    public function pages(): array
+    {
+        return [
+            CreateCostPlanning::class,
+            // ...
+        ];
+    }
     public function panel(Panel $panel): Panel
     {
         return $panel
             ->default()
-            ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
-                return $builder
-                    ->groups([
-                        NavigationGroup::make('Pages')
-                            ->icon('heroicon-o-document')
-                            ->items(
-                                [
+            // ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
+            //     return $builder
+            //         ->groups([
+            //             NavigationGroup::make('Pages')
+            //                 ->icon('heroicon-o-document')
+            //                 ->items(
+            //                     [
 
-                                    NavigationItem::make('Home')
-                                        ->url('/admin/pages/1/edit'),
-                                    // ->icon('heroicon-o-document'),
-                                    NavigationItem::make('About')
-                                        ->url('/admin/pages/2/edit'),
-                                    // ->icon('heroicon-o-document'),
-                                    NavigationItem::make('Project')
-                                        ->url('/admin/pages/3/edit'),
-                                    // ->icon('heroicon-o-document'),
-                                ]
-                            )
-                    ])
-                    ->items([
-                        NavigationItem::make('Dashboard')
-                            ->icon('heroicon-o-home')
-                            ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.pages.dashboard'))
-                            ->url(fn(): string => Dashboard::getUrl()),
-                        // NavigationItem::make('Pages')
-                        //     ->icon('heroicon-o-document'),
+            //                         NavigationItem::make('Home')
+            //                             ->url('/admin/pages/1/edit'),
+            //                         // ->icon('heroicon-o-document'),
+            //                         NavigationItem::make('About')
+            //                             ->url('/admin/pages/2/edit'),
+            //                         // ->icon('heroicon-o-document'),
+            //                         NavigationItem::make('Project')
+            //                             ->url('/admin/pages/3/edit'),
+            //                         // ->icon('heroicon-o-document'),
+            //                     ]
+            //                 )
+            //         ])
+            //         ->items([
+            //             NavigationItem::make('Dashboard')
+            //                 ->icon('heroicon-o-home')
+            //                 ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.pages.dashboard'))
+            //                 ->url(fn(): string => Dashboard::getUrl()),
+            //             // NavigationItem::make('Pages')
+            //             //     ->icon('heroicon-o-document'),
 
-                        // NavigationItem::make('Home')
-                        //     ->url('/admin/pages/1/edit')->group('Pages'),
-                        // // ->icon(null),
-                        // NavigationItem::make('About')
-                        //     ->url('/admin/pages/2/edit')->group('Pages'),
-                        // // ->icon('heroicon-o-document'),
-                        // NavigationItem::make('Project')
-                        //     ->url('/admin/pages/3/edit')->group('Pages'),
-                        // // ->icon('heroicon-o-document'),
-                        ...ProjectResource::getNavigationItems(),
-                        NavigationItem::make('Contact')
-                            ->icon('heroicon-o-phone')
-                            ->url('/admin/contacts/1/edit')
-                    ]);
+            //             // NavigationItem::make('Home')
+            //             //     ->url('/admin/pages/1/edit')->group('Pages'),
+            //             // // ->icon(null),
+            //             // NavigationItem::make('About')
+            //             //     ->url('/admin/pages/2/edit')->group('Pages'),
+            //             // // ->icon('heroicon-o-document'),
+            //             // NavigationItem::make('Project')
+            //             //     ->url('/admin/pages/3/edit')->group('Pages'),
+            //             // // ->icon('heroicon-o-document'),
+            //             ...ProjectResource::getNavigationItems(),
+            //             NavigationItem::make('Contact')
+            //                 ->icon('heroicon-o-phone')
+            //                 ->url('/admin/contacts/1/edit')
+            //         ]);
 
-                // ->items([]);
-            })
+            //     // ->items([]);
+            // })
             ->id('admin')
             ->path('admin')
             ->login()
@@ -112,37 +119,37 @@ class AdminPanelProvider extends PanelProvider
     }
 
 
-    // public function navigation(NavigationBuilder $builder): NavigationBuilder
-    // {
-    //     $items = [];
+    public function navigation(NavigationBuilder $builder): NavigationBuilder
+    {
+        $items = [];
 
-    //     try {
-    //         $pages = Page::whereIn('name', ['home', 'About', 'Projects'])->get()->keyBy('name');
+        try {
+            $pages = Page::whereIn('name', ['home', 'About', 'Projects'])->get()->keyBy('name');
 
-    //         $items = [
-    //             NavigationItem::make('Static Page')
-    //                 ->url('/admin/pages/1/edit')
-    //                 ->icon('heroicon-o-document'),
+            $items = [
+                NavigationItem::make('Static Page')
+                    ->url('/admin/pages/1/edit')
+                    ->icon('heroicon-o-document'),
 
-    //             NavigationItem::make('home')
-    //                 ->url(PageResource::getUrl('edit', ['record' => $pages['home']->id]))
-    //                 ->icon('heroicon-o-home'),
+                NavigationItem::make('home')
+                    ->url(PageResource::getUrl('edit', ['record' => $pages['home']->id]))
+                    ->icon('heroicon-o-home'),
 
-    //             NavigationItem::make('About')
-    //                 ->url(PageResource::getUrl('edit', ['record' => $pages['about']->id]))
-    //                 ->icon('heroicon-o-user-group'),
+                NavigationItem::make('About')
+                    ->url(PageResource::getUrl('edit', ['record' => $pages['about']->id]))
+                    ->icon('heroicon-o-user-group'),
 
-    //             NavigationItem::make('Projects')
-    //                 ->url(PageResource::getUrl('edit', ['record' => $pages['projects']->id]))
-    //                 ->icon('heroicon-o-briefcase'),
-    //         ];
-    //     } catch (\Throwable $e) {
-    //         Log::warning("Navigation build failed: " . $e->getMessage());
-    //         // optionally show fallback static navigation or nothing
-    //     }
+                NavigationItem::make('Projects')
+                    ->url(PageResource::getUrl('edit', ['record' => $pages['projects']->id]))
+                    ->icon('heroicon-o-briefcase'),
+            ];
+        } catch (\Throwable $e) {
+            Log::warning("Navigation build failed: " . $e->getMessage());
+            // optionally show fallback static navigation or nothing
+        }
 
-    //     return $builder->items([
-    //         NavigationGroup::make('Pages')->items($items),
-    //     ]);
-    // }
+        return $builder->items([
+            NavigationGroup::make('Pages')->items($items),
+        ]);
+    }
 }

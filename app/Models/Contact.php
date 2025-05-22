@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\SocialMedia;
-use App\Models\Address;
+use App\Models\Addresses;
 
 class Contact extends Model
 {
@@ -15,7 +15,7 @@ class Contact extends Model
 
     public function addresses()
     {
-        return $this->hasMany(Address::class);
+        return $this->hasMany(Addresses::class);
     }
 
     public function socialMedia()

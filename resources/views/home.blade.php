@@ -2,6 +2,9 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
 @endsection
 
 @section('content')
@@ -14,6 +17,7 @@
   </div>
 </section>
 {{-- about section --}}
+
 <section class="about">
   <div class="image">
     <img src="{{asset("images/wiljantoro-section-image.jpg")}}" alt="">
@@ -30,30 +34,35 @@
     <div class="featured-header">
       <div>
         <h2>{{ $sections[2]->header }}</h2>
-        <p>{{$sections[2]->paragraph}}</p>
+        <p>{{ $sections[2]->paragraph }}</p>
       </div>
-      <a href="/projects" class="cta-button">Lihat Semua Project</a>
     </div>
 
+    <div class="project-slider">
+      @foreach ($projects as $project)
+      <div class="project-item">
+        @php
+        $imagePath = asset('images/exterior.jpg');
+        @endphp
+
+        <img src="{{ $imagePath }}" alt="{{ $project->title }}">
+        <div class="project-info">
+          <h3>{{ $project->title }}</h3>
+          <p>{{ $project->description }}</p>
+        </div>
+      </div>
+      @endforeach
+    </div>
+
+    <a href="/projects" class="cta-button">Lihat Semua Project</a>
   </div>
 </section>
+
 @endsection
 
 
 @section('script')
-<script>
-  $(document).ready(function() {
-    $('.project-slider').slick({
-      autoplay: true,
-      autoplaySpeed: 4000,
-      arrows: true,
-      dots: true,
-      pauseOnHover: true,
-      fade: true,
-      infinite: true,
-      speed: 500,
-    });
-  });
-</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 @endsection

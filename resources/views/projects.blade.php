@@ -22,10 +22,14 @@
   @foreach ($projects as $project)
   <div class="card">
     <div class="card__image">
-      <img src="{{ asset('storage/projects'.$project->image_path) }}">
+      @php
+      $imagePathLocal = asset('images/exterior.jpg');
+      $imagePathOriginal = asset('storage/' . $project->image_path);
+      @endphp
+      <img src="{{ $imagePathLocal }}" alt="$project->title">
     </div>
     <div class="card__info">
-      <div class="card__name">{{ $project->name }}</div>
+      <div class="card__name">{{ $project->title }}</div>
       <h2 class="card__clientName">{{ $project->client_name }}</h2>
     </div>
   </div>

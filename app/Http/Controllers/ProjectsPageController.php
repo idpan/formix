@@ -15,7 +15,8 @@ class ProjectsPageController extends Controller
     {
         $sections = Section::where('page_id', self::PAGE_ID)->get();
         $metadata = Metadata::where('page_id', self::PAGE_ID)->get();
-        $projects = Project::all();
+        $projects = Project::with('projectImages')->get();
+
         return view('projects', compact(
             'sections',
             'metadata',

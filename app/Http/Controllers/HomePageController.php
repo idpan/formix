@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Metadata;
+use App\Models\Project;
 use App\Models\Section;
 use Illuminate\Http\Request;
 
@@ -14,9 +15,12 @@ class HomePageController extends Controller
     {
         $sections = Section::where('page_id', self::PAGE_ID)->get();
         $metadata = Metadata::where('page_id', self::PAGE_ID)->get();
+        $projects = Project::with('projectImages')->get();
+        echo $projects[0]["project_images"];
         return view('home', compact(
             'sections',
-            'metadata'
+            'metadata',
+            'projects'
         ));
     }
 }

@@ -63,8 +63,8 @@ class ProjectResource extends Resource
             ->columns([
                 TextColumn::make('index')
                     ->rowIndex()->label('#'),
-                TextColumn::make('title'),
-                TextColumn::make('client_name'),
+                TextColumn::make('title')->sortable()->searchable(),
+                TextColumn::make('client_name')->sortable()->searchable(),
                 TextColumn::make('description'),
             ])
             ->filters([

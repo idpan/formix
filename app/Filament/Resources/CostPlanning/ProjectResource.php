@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\CostPlaning;
+namespace App\Filament\Resources\CostPlanning;
 
-use App\Filament\Resources\CostPlaning\AhsResource\Pages;
-use App\Filament\Resources\CostPlaning\AhsResource\RelationManagers;
-use App\Filament\Resources\CostPlaning\AhsResource\RelationManagers\AhsDetailsRelationManager;
-use App\Models\CostPlaning\Ahs;
+use App\Filament\Resources\CostPlanning\ProjectResource\Pages;
+use App\Filament\Resources\CostPlanning\ProjectResource\RelationManagers;
+use App\Filament\Resources\CostPlanning\ProjectResource\RelationManagers\WorksRelationManager;
+use App\Models\CostPlaning\Project;
 use Filament\Forms;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -18,26 +17,23 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Facades\Filament;
 
-class AhsResource extends Resource
+class ProjectResource extends Resource
 {
+    protected static ?string $model = Project::class;
+
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Cost Planning';
     public static function canViewAny(): bool
     {
         return Filament::auth()->user()?->hasAnyRole(['admin', 'estimator']);
     }
-    protected static ?string $model = Ahs::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Cost Planning';
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('name'),
-                TextInput::make('unit'),
-                Select::make('ahs_group_id')
-                    ->relationship('group', 'name')
-
+                TextInput::make('name')->required(),
+                TextInput::make('client_name'),
+                TextInput::make('project_location')
             ]);
     }
 
@@ -45,10 +41,9 @@ class AhsResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('group.name')->searchable()->sortable(),
-                TextColumn::make('name')->searchable()->sortable(),
-                TextColumn::make('unit'),
-
+                TextColumn::make('name')->searchable(),
+                TextColumn::make('client_name')->searchable(),
+                TextColumn::make('project_location')->searchable()
             ])
             ->filters([
                 //
@@ -66,16 +61,16 @@ class AhsResource extends Resource
     public static function getRelations(): array
     {
         return [
-            AhsDetailsRelationManager::class
+            WorksRelationManager::class
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListAhs::route('/'),
-            'create' => Pages\CreateAhs::route('/create'),
-            'edit' => Pages\EditAhs::route('/{record}/edit'),
+            'index' => Pages\ListProjects::route('/'),
+            'create' => Pages\CreateProject::route('/create'),
+            'edit' => Pages\EditProject::route('/{record}/edit'),
         ];
     }
 }

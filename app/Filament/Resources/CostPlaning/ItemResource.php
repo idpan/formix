@@ -5,6 +5,7 @@ namespace App\Filament\Resources\CostPlaning;
 use App\Filament\Resources\CostPlaning\ItemResource\Pages;
 use App\Filament\Resources\CostPlaning\ItemResource\RelationManagers;
 use App\Models\CostPlaning\Item;
+use Filament\Actions\DeleteAction;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -17,6 +18,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Facades\Filament;
+use Filament\Widgets\StatsOverviewWidget\Stat;
+use Illuminate\Database\Eloquent\Model;
 
 class ItemResource extends Resource
 {
@@ -66,8 +69,9 @@ class ItemResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->label('Nama')->searchable(),
+                TextColumn::make('name')->label('Nama')->searchable()->sortable(),
                 TextColumn::make('category')->label('Kategori')
+                    ->sortable()
                     ->searchable()
                     ->colors([
                         'primary' => 'material',
@@ -76,7 +80,7 @@ class ItemResource extends Resource
                     ])
                     ->badge(),
                 TextColumn::make('unit')->label('Satuan'),
-                TextColumn::make('unit_price')->label('Harga')->money('IDR', true),
+                TextColumn::make('unit_price')->label('Harga')->sortable()->numeric()->prefix('Rp'),
 
             ])
             ->filters([
@@ -90,11 +94,12 @@ class ItemResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                // Tables\Actions\BulkActionGroup::make([
+                //     Tables\Actions\DeleteBulkAction::make(),
+                // ]),
             ]);
     }
 
@@ -112,5 +117,13 @@ class ItemResource extends Resource
             'create' => Pages\CreateItem::route('/create'),
             'edit' => Pages\EditItem::route('/{record}/edit'),
         ];
+    }
+    public static function canDeleteAny(): bool
+    {
+        return false;
+    }
+    public static function canDelete(\Illuminate\Database\Eloquent\Model $record): bool
+    {
+        return false;
     }
 }

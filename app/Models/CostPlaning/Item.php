@@ -20,4 +20,8 @@ class Item extends Model
     {
         return $this->hasMany(AhsDetail::class, 'item_id');
     }
+    public function projectTemplate()
+    {
+        return $this->hasMany(ProjectTemplate::class, 'project_template_id');
+    }
 }

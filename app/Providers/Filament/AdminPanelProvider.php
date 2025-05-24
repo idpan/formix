@@ -20,7 +20,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
-use App\Filament\Resources\PageResource;
+use App\Filament\Resources\ContentManagement\PageResource;
 use App\Filament\Resources\ProjectResource;
 use Filament\Navigation\NavigationBuilder;
 use App\Models\Page;
@@ -30,13 +30,7 @@ use Filament\Pages\Dashboard;
 
 class AdminPanelProvider extends PanelProvider
 {
-    public function pages(): array
-    {
-        return [
-            CreateCostPlanning::class,
-            // ...
-        ];
-    }
+
     public function panel(Panel $panel): Panel
     {
         return $panel

@@ -43,9 +43,9 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
+                TextColumn::make('name')->sortable(),
                 TextColumn::make('email'),
-                TextColumn::make('roles.name')->badge()
+                TextColumn::make('roles.name')->badge()->sortable()
             ])
             ->filters([
                 //
@@ -74,5 +74,9 @@ class UserResource extends Resource
             'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
+    }
+    public static function canDelete(\Illuminate\Database\Eloquent\Model $record): bool
+    {
+        return Filament::auth()->user()->role !== 'admin';
     }
 }

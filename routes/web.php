@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\AboutPageController;
+use App\Http\Controllers\page\AboutPageController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomePageController;
-use App\Http\Controllers\ProjectsPageController;
+use App\Http\Controllers\page\HomePageController;
+use App\Http\Controllers\page\ProjectsPageController;
 use App\Http\Controllers\EstimasiController;
 
 Route::get('/', [HomePageController::class, 'index']);

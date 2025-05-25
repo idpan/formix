@@ -3,7 +3,10 @@
 /public/build
 /public/hot
 /public/storage
+/boostrap/cache/*.php
 /storage/*.key
+/storage/*.log
+/storage/framework/*
 /storage/pail
 /vendor
 .env

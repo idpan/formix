@@ -9,7 +9,7 @@ class Project extends Model
     protected $table = 'cp_projects';
     protected $fillable = ['name', 'client_name', 'project_location'];
 
-    public function works()
+    public function projectWorks()
     {
         return $this->hasMany(ProjectWork::class, 'project_id');
     }

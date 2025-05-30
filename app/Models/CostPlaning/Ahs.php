@@ -19,17 +19,19 @@ class Ahs extends Model
     public function items()
     {
         return $this->belongsToMany(Item::class, 'cp_ahs_details', 'ahs_id', 'item_id')
-            ->withPivot('coefficient')
-            ->withTimestamps();
+            ->withPivot('coefficient');
     }
 
-    public function ahsDetails()
+    public function projectDrafts()
     {
-        return $this->hasMany(AhsDetail::class, 'ahs_id');
+        return $this->belongsToMany(ProjectDraft::class, 'cp_ahs_project_draft', 'ahs_id', 'project_draft_id',)
+            ->withPivot('volume');
     }
-    public function details()
+
+    public function projectTemplates()
     {
-        return $this->hasMany(AhsDetail::class);
+        return $this->belongsToMany(ProjectTemplate::class, 'cp_project_templates', 'ahs_id', 'project_template_id')
+            ->withPivot('volume');
     }
 
     public function getAhsUnitPrice()

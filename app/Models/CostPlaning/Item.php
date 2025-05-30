@@ -15,13 +15,4 @@ class Item extends Model
             ->withPivot('coeffient')
             ->withTimestamps();
     }
-
-    public function ahsDetails()
-    {
-        return $this->hasMany(AhsDetail::class, 'item_id');
-    }
-    public function projectTemplate()
-    {
-        return $this->hasMany(ProjectTemplate::class, 'project_template_id');
-    }
 }

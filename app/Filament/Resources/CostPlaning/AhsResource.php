@@ -33,10 +33,11 @@ class AhsResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name'),
-                TextInput::make('unit'),
+                TextInput::make('name')->required(),
+                TextInput::make('unit')->required(),
                 Select::make('ahs_group_id')
                     ->relationship('group', 'name')
+                    ->required()
 
             ]);
     }

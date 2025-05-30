@@ -61,7 +61,8 @@ class ItemResource extends Resource
                     ->label('Harga Satuan')
                     ->numeric()
                     ->prefix('Rp')
-                    ->default(0),
+                    ->required()
+                    ->placeholder('0')
             ]);
     }
 

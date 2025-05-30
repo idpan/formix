@@ -11,6 +11,6 @@ class ProjectTemplate extends Model
 
     public function ahs()
     {
-        return $this->hasMany(Item::class, 'item_id');
+        return $this->belongsToMany(Ahs::class, 'project_template_id', 'ahs_id');
     }
 }

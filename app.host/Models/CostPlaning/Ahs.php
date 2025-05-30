@@ -10,7 +10,6 @@ class Ahs extends Model
 
     protected $fillable = ['name', 'unit', 'ahs_group_id'];
 
-
     public function group()
     {
         return $this->belongsTo(AhsGroup::class, 'ahs_group_id');
@@ -30,13 +29,5 @@ class Ahs extends Model
     public function details()
     {
         return $this->hasMany(AhsDetail::class);
-    }
-
-    public function getAhsUnitPrice()
-    {
-        $ahs_unit_price = $this->items->sum(function ($item) {
-            return $item->unit_price * $item->coefficient;
-        });
-        return $ahs_unit_price;
     }
 }

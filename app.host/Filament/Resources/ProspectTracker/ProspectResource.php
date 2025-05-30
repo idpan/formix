@@ -23,7 +23,6 @@ class ProspectResource extends Resource
 {
     public static function canViewAny(): bool
     {
-
         return Filament::auth()->user()?->hasAnyRole(['admin', 'sales']);
     }
     protected static ?string $model = Prospect::class;
